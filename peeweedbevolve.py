@@ -343,13 +343,16 @@ def calc_table_changes(existing_tables, ignore_tables=None):
   return adds, add_fks, deletes, renames
 
 def is_postgres(db):
-  return isinstance(db, pw.PostgresqlDatabase)
+  # Proxy class has .obj attr
+  return isinstance(db, pw.PostgresqlDatabase) or isinstance(getattr(db,'obj'), pw.PostgresqlDatabase)
 
 def is_mysql(db):
-  return isinstance(db, pw.MySQLDatabase)
+  # Proxy class has .obj attr
+  return isinstance(db, pw.MySQLDatabase) or isinstance(getattr(db,'obj'), pw.MySQLDatabase)
 
 def is_sqlite(db):
-  return isinstance(db, pw.SqliteDatabase)
+  # Proxy class has .obj attr
+  return isinstance(db, pw.SqliteDatabase) or isinstance(getattr(db,'obj'), pw.SqliteDatabase)
 
 def auto_detect_migrator(db):
   if is_postgres(db):
