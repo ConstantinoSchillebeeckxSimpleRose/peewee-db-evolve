@@ -746,7 +746,6 @@ def evolve(db, interactive=True, ignore_tables=None, schema=None, fout=None):
 
 def _write_to_file(to_run, fout):
 
-    print('Writing migration to file %s' % fout)
     with open(fout, 'w') as f:
         for sql, params in to_run:
             if len(params):
