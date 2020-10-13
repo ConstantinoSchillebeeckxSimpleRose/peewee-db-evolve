@@ -750,7 +750,7 @@ def _write_to_file(to_run, fout):
         for sql, params in to_run:
             if len(params):
                 raise NotImplementedError("prepared statements not yet implemented: %s [%s]" % (sql, params))
-            f.write(sql + '\n')
+            f.write(sql + ';\n')
 
 def _execute(db, to_run, interactive=True, commit=True):
   if interactive: print()
